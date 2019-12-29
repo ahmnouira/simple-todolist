@@ -1,52 +1,39 @@
-// check counter for add and removes tasks
+$(document).ready(() => {                                          // wait for the HTML document to fully loaded and ready
 
+var tasks = 0;                                                     // stores the nomber of tasks in the list 
+$("#removeAll").hide();                                            // initialy hide the removeAll button 
 
-$(document).ready(function(){
-
-var tasks = 0;
-var createClearAll = false;
-
-$("#remove").hide();
-
-$("#add").on("click", function(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    // event handler
-    var val = $("input").val();
-    if (val !=="") {
-        tasks++;
-        console.log(tasks);
-        var elem = $("<li class='list-group-item'></li>").text(val);
-        $(elem).append("<div class='text-right'><button class='btn btn-danger'> X </button></div>");
-        $("#mylist").append(elem);
-        $("input").val(""); // clear the input
-        $(".text-right").on("click", function(event){
-            event.stopPropagation();
+/* add task new task hander */
+$("#add").on("click", (event) => {                                  // add listner to 'click' event
+    event.preventDefault();                                         // prevent the default action of the event 
+    event.stopPropagation();                                        // stop the event from the building up the other elements
+    var val = $("input").val();                                    // get the value from the input
+    if (val !=="") {                                               // check if the input value is not empty
+        tasks += 1;                                                // add 1 to the counter
+        var elem = $("<li class='list-group-item'>").text(val);     // prepare the elment to diplay for a new task
+        $(elem).append("<div class='text-right'><button class='btn btn-danger'> X </button></div></li>"); 
+        $("#mylist").append(elem);                                  // append the new task element to mylist element 
+        $("input").val("");                                         // clear the input
+       
+        /* remove unique task hander */
+        $(".text-right").on("click", function(event) {
             event.preventDefault();
-            tasks--;
-            console.log(tasks);
-            $(this).parent().remove();
+            event.stopPropagation()
+            tasks -= 1; 
+            $(this).parent().remove();            
         });
-
-        
-
-        if(tasks > 2 && !createClearAll) {
-            createClearAll = true;
-            $("#remove").show();
+        /* show removeAll button when we have more than 3 tasks */
+        if(tasks > 2)  {
+            $("#removeAll").show();
         }
-        if(createClearAll == true) {
-            $("#remove").on("click", function(event){
-                event.preventDefault();
-                event.stopPropagation();
-                $(".disbaled").siblings().remove();
-            });
-        
-        }
-      
+        /* removeAll hander */
+        $("#removeAll").on("click", (event) => {
+            event.preventDefault(); 
+            event.stopPropagation();
+            $(".disabled").siblings().remove();
+            tasks = 0; 
+            $("#removeAll").hide();
+        });
     }
 });
-
-
-
-});
-
+}); 

@@ -1,42 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>To-Do-List </title>
+  <title>To-Do-List</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
 </head>
+
 <body>
-<div class="container">
-  <h1 class="text-center bg-success lead">My To-Do-List </h1>
-
-  <div class="row">
-    <div class="col-sm-4">
-  <div class="form-group">
-    <label for="new-item">Add New Item: </label>
-    <input class="form-control" type="text" placeholder="New item..." id="new-item" autofocus/>
- </div>
-
-  <div class="row">
-      <div class="col-sm-6">
-            <button class="btn btn-success" id="add"> Add </button>
-       </div>
-       <div class="col-sm-6 text-right">
-            <button class="btn btn-danger" id="remove"> Clear All !</button>
-        </div>    
+  <div class="container">
+    <h1 class="text-center bg-success lead">My To-Do-List</h1>
+    <div class="row">
+      <div class="col-sm-4">
+        <!-- new task input -->
+        <div class="form-group">
+          <label for="new-item">Add New Task:</label>
+          <input class="form-control" type="text" placeholder="New task..." id="new-item" autofocus/>
+        </div>
+        <!-- control buttons -->
+        <div class="row">
+          <div class="col-sm-6">
+            <button class="btn btn-success" id="add">Add</button>
+          </div>
+          <div class="col-sm-6 text-right">
+            <button class="btn btn-danger" id="removeAll">Clear All !</button>
+          </div>    
+        </div>
+      </div>
+      <!-- list of task -->
+      <div class="col-sm-8 active">
+        <ol id="mylist" class="list-group">
+          <li class="list-group-item active disabled text-center">My Task List</li>
+        </ol>
+      </div>
+    </div>
   </div>
-  </div>
 
-  <div class="col-sm-8 active">
-  <ol id="mylist" class="list-group">
-      <li class="list-group-item active disbaled text-center"> My List </li>
-  </ol>
-</div>
-</div>
-</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 <script src="js/script.js"></script>
+
 </body>
 </html> 
